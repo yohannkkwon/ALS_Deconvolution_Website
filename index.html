@@ -183,9 +183,15 @@
     /* ── Stats ────────────────────────────────────────────────────── */
     #stats { background: var(--black); }
     .stats-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      display: grid; grid-template-columns: repeat(6, 1fr);
       gap: 2px; background: var(--border); border: 1px solid var(--border);
       border-radius: 20px; overflow: hidden; margin-top: 64px;
+    }
+    @media (max-width: 900px) {
+      .stats-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .stat-cell {
       background: var(--card); padding: 48px 36px; text-align: center;
@@ -193,7 +199,7 @@
     }
     .stat-cell:hover { background: var(--card2); }
     .stat-num {
-      font-size: 3.2rem; font-weight: 800; letter-spacing: -0.04em;
+      font-size: clamp(1.8rem, 2.8vw, 3rem); font-weight: 800; letter-spacing: -0.04em;
       background: linear-gradient(135deg, var(--blue), var(--purple));
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text; line-height: 1;
@@ -401,13 +407,15 @@
 
 <!-- NAV -->
 <nav>
-  <div class="nav-brand">ALS Transcriptomics &nbsp;·&nbsp; Kwon Lab</div>
+  <div class="nav-brand">ALS Transcriptomics &nbsp;·&nbsp; Mertens Lab</div>
   <ul class="nav-links">
     <li><a href="#intro">Overview</a></li>
     <li><a href="#regions">Regions</a></li>
     <li><a href="#finding">Key Finding</a></li>
     <li><a href="#method">Methods</a></li>
-    <li><a href="#reports">Reports</a></li>
+    <li><a href="fc.html">FC Detail</a></li>
+    <li><a href="mc.html">MC Detail</a></li>
+    <li><a href="sc.html">SC Detail</a></li>
   </ul>
 </nav>
 
@@ -464,23 +472,23 @@
       </div>
       <div class="stat-cell">
         <div class="stat-num" data-target="15675">0</div>
-        <div class="stat-label">Genes per Analysis</div>
+        <div class="stat-label">Genes per Region</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num" data-target="31">0</div>
+        <div class="stat-num" data-target="30">0</div>
         <div class="stat-label">ALS-Significant Modules</div>
       </div>
       <div class="stat-cell">
         <div class="stat-num" data-target="5">0</div>
-        <div class="stat-label">New Clinical Trait Columns</div>
+        <div class="stat-label">New Clinical Traits Added</div>
       </div>
       <div class="stat-cell">
         <div class="stat-num" data-target="206">0</div>
-        <div class="stat-label">Genes in Key Excitatory Module</div>
+        <div class="stat-label">Genes — Key Excitatory Module</div>
       </div>
       <div class="stat-cell">
-        <div class="stat-num" data-suffix="e-14">1.05×10</div>
-        <div class="stat-label">Lowest Module p-Value (Spinal Cord)</div>
+        <div class="stat-num" style="-webkit-text-fill-color:transparent;font-size:clamp(1.4rem,2vw,2.2rem);">1.05×10⁻¹⁴</div>
+        <div class="stat-label">Lowest p-Value (Spinal Cord)</div>
       </div>
     </div>
   </div>
@@ -729,23 +737,23 @@
     <h2 class="section-title reveal">Interactive Reports</h2>
     <p class="section-body reveal">Each report contains the full module–trait heatmap (with Age, FTD/AD, and Onset columns), the filtered module bar chart, and annotated analysis for every region.</p>
     <div class="reports-grid stagger">
-      <a href="reports/FC_Subset_Analysis.html" class="report-card fc" target="_blank">
+      <a href="fc.html" class="report-card fc">
         <div class="report-region fc">Frontal Cortex</div>
-        <div class="report-title">FC Subset Analysis</div>
-        <div class="report-body">11 ALS-significant modules · All downregulated · Excitatory neuron deconvolution included · Age, FTD/AD, Onset traits added.</div>
-        <div class="report-arrow">Open full report →</div>
+        <div class="report-title">FC — Deep Dive</div>
+        <div class="report-body">10 significant modules · All DOWN in ALS · Immune & vascular gene signatures · Excitatory neuron deconvolution spotlight · Top hub gene analysis.</div>
+        <div class="report-arrow">Explore region →</div>
       </a>
-      <a href="reports/MC_Subset_Analysis.html" class="report-card mc" target="_blank">
+      <a href="mc.html" class="report-card mc">
         <div class="report-region mc">Motor Cortex</div>
-        <div class="report-title">MC Subset Analysis</div>
-        <div class="report-body">11 ALS-significant modules · 6 DOWN · 5 UP · Bidirectional pattern suggests neuronal loss + reactive gliosis.</div>
-        <div class="report-arrow">Open full report →</div>
+        <div class="report-title">MC — Deep Dive</div>
+        <div class="report-body">11 significant modules · Bidirectional (6↓ 5↑) · Cholinergic synaptic loss · Reactive RNA processing upregulation · Key hub genes annotated.</div>
+        <div class="report-arrow">Explore region →</div>
       </a>
-      <a href="reports/SC_Subset_Analysis.html" class="report-card sc" target="_blank">
+      <a href="sc.html" class="report-card sc">
         <div class="report-region sc">Spinal Cord</div>
-        <div class="report-title">SC Subset Analysis</div>
-        <div class="report-body">9 ALS-significant modules · Strongest signal (p = 1.05×10⁻¹⁴) · 4 DOWN · 5 UP · Primary site of lower motor neuron degeneration.</div>
-        <div class="report-arrow">Open full report →</div>
+        <div class="report-title">SC — Deep Dive</div>
+        <div class="report-body">9 significant modules · p = 1.05×10⁻¹⁴ · Myelin & connexin loss · Microglial activation · GABA transporter downregulation · GJB1 spotlight.</div>
+        <div class="report-arrow">Explore region →</div>
       </a>
     </div>
   </div>
@@ -754,7 +762,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">ALS Transcriptomics Project</div>
-  <p class="footer-note">WGCNA · Cell-Type Deconvolution · GO Enrichment &nbsp;·&nbsp; Analysis by Yohan Kwon</p>
+  <p class="footer-note">WGCNA · Cell-Type Deconvolution · GO Enrichment &nbsp;·&nbsp; Mertens Lab &nbsp;·&nbsp; Analysis by Yohan Kwon</p>
   <div class="footer-links">
     <a href="#hero">Back to top ↑</a>
     <a href="#reports">Reports</a>
