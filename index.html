@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ALS Transcriptomics — Yohan Kwon</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -413,9 +419,13 @@
     <li><a href="#regions">Regions</a></li>
     <li><a href="#finding">Key Finding</a></li>
     <li><a href="#method">Methods</a></li>
-    <li><a href="fc.html">FC Detail</a></li>
-    <li><a href="mc.html">MC Detail</a></li>
-    <li><a href="sc.html">SC Detail</a></li>
+    <li><a href="fc.html">Frontal Cortex</a></li>
+    <li><a href="mc.html">Motor Cortex</a></li>
+    <li><a href="sc.html">Spinal Cord</a></li>
+    <li><a href="fc_analysis.html">FC Analysis</a></li>
+    <li><a href="mc_analysis.html">MC Analysis</a></li>
+    <li><a href="sc_analysis.html">SC Analysis</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
   </ul>
 </nav>
 
@@ -834,6 +844,21 @@ document.addEventListener('mousemove', e => {
   const y = (e.clientY / window.innerHeight - 0.5) * 20;
   heroBg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
 }, { passive: true });
+</script>
+<script>
+function toggleTheme(){
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('theme-btn').textContent = next==='dark' ? '☀ Light' : '☾ Dark';
+}
+// Set button label on load
+(function(){
+  var t = localStorage.getItem('theme')||'dark';
+  var btn = document.getElementById('theme-btn');
+  if(btn) btn.textContent = t==='dark' ? '☀ Light' : '☾ Dark';
+})();
 </script>
 </body>
 </html>

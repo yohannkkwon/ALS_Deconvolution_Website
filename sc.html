@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spinal Cord — ALS Transcriptomics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,9 +67,13 @@
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fc.html">Frontal Cortex</a></li>
+    <li><a href="fc_analysis.html">FC Analysis</a></li>
     <li><a href="mc.html">Motor Cortex</a></li>
+    <li><a href="mc_analysis.html">MC Analysis</a></li>
     <li><a href="sc.html" class="active">Spinal Cord</a></li>
+    <li><a href="sc_analysis.html">SC Analysis</a></li>
     <li><a href="reports/SC_Subset_Analysis.html" target="_blank">Full Report ↗</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
   </ul>
 </nav>
 
@@ -192,14 +202,35 @@
 
       <div class="module-card down-card">
         <div class="module-header">
-          <div class="module-name">ME6 &nbsp;<span style="font-size:0.72rem;color:var(--grey);">passing module</span></div>
+          <div class="module-name">red &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 1,334</span></div>
           <span class="module-dir down">↓ DOWN #3</span>
         </div>
         <div class="module-stats">
           <div class="module-stat"><strong>−0.111</strong>ALS r</div>
-          <div class="module-stat"><strong>1.99×10⁻²</strong>p-value</div>
+          <div class="module-stat"><strong>0.0199</strong>p-value</div>
         </div>
-        <p class="module-interp">Additional downregulated module contributing to the pattern of reduced gene expression in ALS spinal cord. The convergence of multiple independent DOWN modules — identified without prior biological assumptions — corroborates the conclusion that ALS spinal cord undergoes broad transcriptional silencing of normal neuronal gene programmes alongside the loss of myelin and inhibitory circuitry.</p>
+        <div class="gene-list">
+          <span class="gene-chip down">PCDH9-AS2</span><span class="gene-chip down">LSAMP-AS1</span>
+          <span class="gene-chip down">CACNA2D1-AS1</span><span class="gene-chip down">PDC</span>
+        </div>
+        <p class="module-interp">A large module (n=1,334) composed predominantly of antisense lncRNAs at neuronal gene loci. <em>CACNA2D1-AS1</em> is an antisense RNA at the calcium channel auxiliary subunit gene CACNA2D1 — its downregulation may reduce regulatory control of calcium homeostasis. <em>LSAMP-AS1</em> is antisense to LSAMP (Limbic System-Associated Membrane Protein), a neuronal adhesion molecule. <em>PDC</em> (phosducin) modulates G-protein signalling in photoreceptors and neurons. The module captures a layer of noncoding regulatory RNA loss in ALS spinal cord.</p>
+      </div>
+
+      <div class="module-card down-card">
+        <div class="module-header">
+          <div class="module-name">blue &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 3,564</span></div>
+          <span class="module-dir down">↓ DOWN #4</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.110</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0211</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip down">MYT1L</span><span class="gene-chip down">PACSIN1</span>
+          <span class="gene-chip down">KCNC1</span><span class="gene-chip down">CACNA1E</span>
+          <span class="gene-chip down">SRRM4</span><span class="gene-chip down">CHD5</span>
+        </div>
+        <p class="module-interp">The largest spinal cord module (n=3,564) — a massive programme of broad neuronal gene expression loss. <em>MYT1L</em> (Myelin Transcription Factor 1-Like) is critical for neuronal identity maintenance; haploinsufficiency causes intellectual disability and autism. <em>KCNC1</em> (Kv3.1) is the fast-inactivating potassium channel that enables high-frequency firing of motor neurons — its loss would critically impair the rapid firing rates that define motor neuron function. <em>CACNA1E</em> encodes the R-type voltage-gated calcium channel essential for synaptic transmission. <em>PACSIN1</em> mediates synaptic vesicle endocytosis. <em>SRRM4</em> drives neuronal microexon splicing. This module is the transcriptional signature of global motor neuron identity loss at scale.</p>
       </div>
     </div>
 
@@ -272,6 +303,22 @@
           <span class="gene-chip up">ZDHHC6</span><span class="gene-chip up">LPP</span><span class="gene-chip up">LAPTM4A</span>
         </div>
         <p class="module-interp"><strong><em>MBNL1</em></strong> (Muscleblind-like 1) is an RNA-binding protein that regulates alternative splicing. It physically interacts with TDP-43 — the defining pathological protein of ALS — and its sequestration contributes to splicing dysregulation. Finding MBNL1 upregulated in ALS spinal cord is consistent with RNA processing stress occurring in surviving cells as TDP-43 pathology disrupts the splicing regulatory network. <em>EIF3E</em>, a translation initiation factor subunit, is upregulated in stress conditions, reflecting translational reprogramming as cells respond to protein aggregation stress.</p>
+      </div>
+
+      <div class="module-card up-card">
+        <div class="module-header">
+          <div class="module-name">darkorange &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 135</span></div>
+          <span class="module-dir up">↑ UP #5</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>+0.130</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0061</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip up">DNAJA1</span><span class="gene-chip up">HSPD1</span>
+          <span class="gene-chip up">PTGES3</span><span class="gene-chip up">TCP1</span><span class="gene-chip up">PPID</span>
+        </div>
+        <p class="module-interp">A <strong>heat shock / molecular chaperone module</strong>. <em>HSPD1</em> (Hsp60) is the major mitochondrial chaperone, essential for correct folding of mitochondrial proteins — its upregulation signals mitochondrial proteostasis stress. <em>DNAJA1</em> (Hsp40 family) and <em>TCP1</em> (chaperonin CCT) are cytosolic chaperones that prevent protein aggregation. <em>PTGES3</em> is a co-chaperone for Hsp90. <em>PPID</em> (cyclophilin D) regulates the mitochondrial permeability transition pore. Together this module captures the chaperone stress response — the cell's attempt to manage the protein aggregation that is central to ALS pathology — directly at the spinal cord epicentre.</p>
       </div>
     </div>
   </div>
@@ -373,8 +420,21 @@ document.addEventListener('mousemove', e => {
   heroBg.style.transform = `translate(${x}px,${y}px) scale(1.08)`;
 }, { passive:true });
 
+function toggleTheme(){
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('theme-btn').textContent = next==='dark' ? '☀ Light' : '☾ Dark';
+}
+(function(){
+  var t = localStorage.getItem('theme')||'dark';
+  var btn = document.getElementById('theme-btn');
+  if(btn) btn.textContent = t==='dark' ? '☀ Light' : '☾ Dark';
+})();
+
 const ctx = document.getElementById('sc-chart').getContext('2d');
-const mods = ['black','darkgreen','purple','cyan','orange','magenta','ME26','ME6','ME2'];
+const mods = ['black','darkgreen','purple','cyan','orange','magenta','darkorange','red','blue'];
 const rVals = [-0.357,0.306,0.261,0.224,0.222,-0.210,0.130,-0.111,-0.110];
 const colors = rVals.map(v => v < 0 ? 'rgba(48,209,88,0.65)' : 'rgba(255,159,10,0.65)');
 const borders = rVals.map(v => v < 0 ? '#30d158' : '#ff9f0a');

@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Motor Cortex — ALS Transcriptomics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -58,9 +64,13 @@
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fc.html">Frontal Cortex</a></li>
+    <li><a href="fc_analysis.html">FC Analysis</a></li>
     <li><a href="mc.html" class="active">Motor Cortex</a></li>
+    <li><a href="mc_analysis.html">MC Analysis</a></li>
     <li><a href="sc.html">Spinal Cord</a></li>
+    <li><a href="sc_analysis.html">SC Analysis</a></li>
     <li><a href="reports/MC_Subset_Analysis.html" target="_blank">Full Report ↗</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
   </ul>
 </nav>
 
@@ -181,6 +191,39 @@
         </div>
         <p class="module-interp"><em>PEX14</em> is essential for peroxisome biogenesis — peroxisomal dysfunction has been linked to ALS pathology through impaired fatty acid oxidation and oxidative stress. <em>ATP6V0E2</em> (vacuolar ATPase) maintains lysosomal acidification, critical for protein degradation. Loss of these housekeeping cellular maintenance genes may reflect ALS motor neurons losing metabolic homeostasis capacity before death.</p>
       </div>
+
+      <div class="module-card down-card">
+        <div class="module-header">
+          <div class="module-name">violet &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 115</span></div>
+          <span class="module-dir down">↓ DOWN #5</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.123</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0276</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip down">KALRN</span><span class="gene-chip down">DLGAP2</span>
+          <span class="gene-chip down">LMTK2</span><span class="gene-chip down">DRP2</span>
+          <span class="gene-chip down">SRRM4</span><span class="gene-chip down">RGS6</span>
+        </div>
+        <p class="module-interp"><em>KALRN</em> (Kalirin) is a Rho GTPase guanine nucleotide exchange factor critical for dendritic spine morphogenesis and synaptic plasticity — mutations impair long-term potentiation. <em>DLGAP2</em> is a post-synaptic density scaffolding protein that links PSD-95 to the cytoskeleton. <em>LMTK2</em> is a lemur kinase involved in axonal transport regulation; its loss causes motor deficits in mice. <em>SRRM4</em> (nSR100) orchestrates neuronal microexon splicing programmes — its downregulation has direct relevance to TDP-43 pathology. Together this module captures the progressive dismantling of synaptic identity in ALS motor cortex.</p>
+      </div>
+
+      <div class="module-card down-card">
+        <div class="module-header">
+          <div class="module-name">thistle2 &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 26</span></div>
+          <span class="module-dir down">↓ DOWN #6</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.110</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0487</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip down">BMS1P14</span><span class="gene-chip down">LOC101928381</span>
+          <span class="gene-chip down">BMS1P13</span>
+        </div>
+        <p class="module-interp">A small (n=26) borderline module (p=0.049) containing primarily pseudogenes and uncharacterised locus transcripts. The BMS1 pseudogenes are paralogues of BMS1 (a ribosome biogenesis factor). While the biological interpretation is limited, its inclusion completes the full set of ALS-filtered motor cortex modules. Its marginal significance should be interpreted with caution.</p>
+      </div>
     </div>
 
     <!-- UP modules -->
@@ -219,6 +262,55 @@
           <span class="gene-chip up">KLHDC1</span><span class="gene-chip up">CCNH</span>
         </div>
         <p class="module-interp"><em>CCNH</em> (cyclin H) activates CDK7 and CDK8, key regulators of transcription initiation and the cell stress response. <em>WDR11</em> is a WD-repeat protein involved in protein complex assembly. The upregulation of general transcription and chromatin regulatory factors may reflect compensatory transcriptional reprogramming as ALS progresses — cells attempting to adapt to a changing environment by globally altering gene expression.</p>
+      </div>
+
+      <div class="module-card up-card">
+        <div class="module-header">
+          <div class="module-name">darkmagenta &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 113</span></div>
+          <span class="module-dir up">↑ UP #3</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>+0.138</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0133</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip up">PAPOLA</span><span class="gene-chip up">XPO1</span>
+          <span class="gene-chip up">SOS1</span><span class="gene-chip up">TRPM7</span>
+          <span class="gene-chip up">SNRNP48</span>
+        </div>
+        <p class="module-interp"><em>PAPOLA</em> encodes the canonical poly(A) polymerase — its upregulation signals increased mRNA polyadenylation activity, possibly reflecting compensatory RNA processing. <em>XPO1</em> (exportin-1/CRM1) mediates nuclear export of mRNA and proteins; XPO1 inhibition is being explored as an ALS therapeutic. <em>SOS1</em> is a Ras/Rac1 guanine nucleotide exchange factor involved in cellular stress signalling. <em>TRPM7</em> is a Mg²⁺-permeable ion channel involved in neuronal excitotoxicity. This module captures RNA processing and signalling adaptations in ALS motor cortex.</p>
+      </div>
+
+      <div class="module-card up-card">
+        <div class="module-header">
+          <div class="module-name">lightgreen &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 302</span></div>
+          <span class="module-dir up">↑ UP #4</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>+0.134</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0161</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip up">SOS2</span><span class="gene-chip up">RDX</span>
+          <span class="gene-chip up">TCF12</span><span class="gene-chip up">BBX</span><span class="gene-chip up">FNTA</span>
+        </div>
+        <p class="module-interp"><em>SOS2</em> is a Ras GEF closely related to SOS1 (also in darkmagenta), suggesting coordinated upregulation of Ras/MAPK pathway activation. <em>RDX</em> (Radixin) organises actin cytoskeleton at the cell membrane — its upregulation may reflect glial cytoskeletal remodelling in reactive astrocytes. <em>TCF12</em> is a basic helix-loop-helix transcription factor involved in neural development and immune cell identity. <em>FNTA</em> encodes the farnesyltransferase α subunit involved in protein prenylation. The module broadly reflects immune/glial activation and cytoskeletal remodelling in ALS.</p>
+      </div>
+
+      <div class="module-card up-card">
+        <div class="module-header">
+          <div class="module-name">ivory &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 53</span></div>
+          <span class="module-dir up">↑ UP #5</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>+0.134</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0166</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip up">CPNE3</span><span class="gene-chip up">FGD4</span>
+          <span class="gene-chip up">PEX2</span><span class="gene-chip up">ITGB8</span><span class="gene-chip up">FBXO8</span>
+        </div>
+        <p class="module-interp"><em>FGD4</em> (FRABIN) is a Cdc42-specific GEF whose mutations cause Charcot-Marie-Tooth neuropathy type 4H — its presence in an ALS upregulated module is notable given the mechanistic overlap between CMT and ALS. <em>PEX2</em> is essential for peroxisome biogenesis; peroxisome dysfunction contributes to ALS motor neuron degeneration. <em>ITGB8</em> (integrin β8) mediates TGF-β activation and glial-neuronal interactions. <em>CPNE3</em> is a calcium-dependent membrane binding protein. This module suggests overlapping peroxisomal and cytoskeletal stress responses in ALS motor cortex.</p>
       </div>
     </div>
   </div>
@@ -298,8 +390,21 @@ document.addEventListener('mousemove', e => {
   heroBg.style.transform = `translate(${x}px,${y}px) scale(1.08)`;
 }, { passive:true });
 
+function toggleTheme(){
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('theme-btn').textContent = next==='dark' ? '☀ Light' : '☾ Dark';
+}
+(function(){
+  var t = localStorage.getItem('theme')||'dark';
+  var btn = document.getElementById('theme-btn');
+  if(btn) btn.textContent = t==='dark' ? '☀ Light' : '☾ Dark';
+})();
+
 const ctx = document.getElementById('mc-chart').getContext('2d');
-const mods = ['greenyellow','darkslateblue','cyan','white','ME32','ME50','lightcyan1','brown4','ME42','ME46','ME18'];
+const mods = ['greenyellow','darkslateblue','cyan','white','violet','thistle2','lightcyan1','brown4','darkmagenta','lightgreen','ivory'];
 const rVals = [-0.196,-0.158,-0.145,-0.142,-0.123,-0.110,0.153,0.141,0.138,0.134,0.134];
 const colors = rVals.map(v => v < 0 ? 'rgba(191,90,242,0.65)' : 'rgba(255,69,58,0.65)');
 const borders = rVals.map(v => v < 0 ? '#bf5af2' : '#ff453a');

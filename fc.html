@@ -2,6 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Frontal Cortex — ALS Transcriptomics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,9 +62,13 @@
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="fc.html" class="active">Frontal Cortex</a></li>
+    <li><a href="fc_analysis.html">FC Analysis</a></li>
     <li><a href="mc.html">Motor Cortex</a></li>
+    <li><a href="mc_analysis.html">MC Analysis</a></li>
     <li><a href="sc.html">Spinal Cord</a></li>
+    <li><a href="sc_analysis.html">SC Analysis</a></li>
     <li><a href="reports/FC_Subset_Analysis.html" target="_blank">Full Report ↗</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
   </ul>
 </nav>
 
@@ -217,6 +227,70 @@
         <p class="module-interp"><em>TRIM6</em> and <em>TRIM34</em> are interferon-stimulated antiviral restriction factors of the TRIM family. Their coordinate downregulation suggests suppressed innate antiviral immunity in ALS frontal cortex — potentially leaving neurons more vulnerable to neurotropic stressors. The GAGE cancer-testis antigen <em>GAGE12C</em> is also expressed in neurons under stress.</p>
       </div>
 
+      <div class="module-card">
+        <div class="module-header">
+          <div class="module-name">darkolivegreen4 &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 24</span></div>
+          <span class="module-stat-badge" style="font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(41,151,255,0.1);color:var(--blue);">↓ DOWN #7</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.284</strong>ALS r</div>
+          <div class="module-stat"><strong>0.00198</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip">HOXA10-AS</span><span class="gene-chip">MIR9500</span>
+          <span class="gene-chip">MIR3116-1</span><span class="gene-chip">OR6C2</span>
+        </div>
+        <p class="module-interp">A small module (n=24) anchored by HOX locus noncoding transcripts. <em>HOXA10-AS</em> is an antisense lncRNA at the HOXA10 locus involved in developmental patterning. The module also contains microRNA precursors (<em>MIR9500</em>, <em>MIR3116-1</em>), suggesting coordinated regulation of a HOX-associated regulatory RNA cluster in ALS frontal cortex.</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">
+          <div class="module-name">lightcoral &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 26</span></div>
+          <span class="module-stat-badge" style="font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(41,151,255,0.1);color:var(--blue);">↓ DOWN #8</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.282</strong>ALS r</div>
+          <div class="module-stat"><strong>0.00219</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip">HOXC-AS2</span><span class="gene-chip">MTCH2P1</span>
+          <span class="gene-chip">LINC02852</span><span class="gene-chip">SNORD114-17</span>
+        </div>
+        <p class="module-interp">Another small HOX-cluster noncoding module. <em>HOXC-AS2</em> is an antisense lncRNA at the HOXC locus; the module also contains snoRNA (<em>SNORD114-17</em>) and LINC transcripts. The parallel downregulation of HOX-associated noncoding RNAs across two separate modules (darkolivegreen4 and lightcoral) suggests a broader HOX regulatory network is selectively silenced in ALS frontal cortex.</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">
+          <div class="module-name">lightyellow &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 317</span></div>
+          <span class="module-stat-badge" style="font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(41,151,255,0.1);color:var(--blue);">↓ DOWN #9</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.198</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0333</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip">SELP</span><span class="gene-chip">DDX25</span>
+          <span class="gene-chip">CDH17</span><span class="gene-chip">CLEC4F</span><span class="gene-chip">SNRPA1</span>
+        </div>
+        <p class="module-interp">A larger module (n=317) with mixed inflammatory and adhesion gene content. <em>SELP</em> (P-selectin) mediates leukocyte–endothelium adhesion during inflammation. <em>CLEC4F</em> is a C-type lectin expressed in Kupffer cells and tissue macrophages. <em>CDH17</em> encodes a calcium-dependent cell adhesion molecule. The module suggests an immune/vascular component that is downregulated in ALS frontal cortex.</p>
+      </div>
+
+      <div class="module-card">
+        <div class="module-header">
+          <div class="module-name">tan &nbsp;<span style="font-size:0.72rem;color:var(--grey);">n = 510</span></div>
+          <span class="module-stat-badge" style="font-size:0.7rem;font-weight:700;padding:4px 10px;border-radius:20px;background:rgba(41,151,255,0.1);color:var(--blue);">↓ DOWN #10</span>
+        </div>
+        <div class="module-stats">
+          <div class="module-stat"><strong>−0.194</strong>ALS r</div>
+          <div class="module-stat"><strong>0.0371</strong>p-value</div>
+        </div>
+        <div class="gene-list">
+          <span class="gene-chip">CENATAC</span><span class="gene-chip">MRPS25</span>
+          <span class="gene-chip">TECTA</span><span class="gene-chip">TBCEL-TECTA</span><span class="gene-chip">ANKMY1</span>
+        </div>
+        <p class="module-interp">The largest FC module (n=510), with borderline ALS significance (p=0.037). <em>CENATAC</em> encodes a centrosome and cilia-associated protein involved in spliceosome regulation. <em>MRPS25</em> is a mitochondrial ribosomal protein. <em>TECTA</em> encodes α-tectorin, a major component of the tectorial membrane — a surprising finding in cortex, possibly representing a moonlighting gene expression programme. The broad size and modest r suggest a heterogeneous module with weaker ALS signal.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -339,6 +413,19 @@ document.addEventListener('mousemove', e => {
   const y = (e.clientY/window.innerHeight - 0.5) * 18;
   heroBg.style.transform = `translate(${x}px,${y}px) scale(1.08)`;
 }, { passive:true });
+
+function toggleTheme(){
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('theme-btn').textContent = next==='dark' ? '☀ Light' : '☾ Dark';
+}
+(function(){
+  var t = localStorage.getItem('theme')||'dark';
+  var btn = document.getElementById('theme-btn');
+  if(btn) btn.textContent = t==='dark' ? '☀ Light' : '☾ Dark';
+})();
 
 // Bar chart
 const ctx = document.getElementById('fc-chart').getContext('2d');

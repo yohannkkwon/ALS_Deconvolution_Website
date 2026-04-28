@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FC Analysis — ALS Transcriptomics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .page-hero { padding: 140px 24px 80px; text-align: center; background: var(--dark); border-bottom: 1px solid var(--border); }
+    .page-hero-eye { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
+    .page-hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .page-hero-sub { font-size: 1rem; color: var(--grey); max-width: 560px; margin: 16px auto 0; line-height: 1.8; }
+    .analysis-section { padding: 80px 24px; border-top: 1px solid var(--border); }
+    .analysis-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+    .analysis-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .analysis-desc { font-size: 0.88rem; color: var(--grey); line-height: 1.8; margin-bottom: 24px; max-width: 800px; }
+    .img-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 32px; margin-bottom: 32px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><a href="index.html">← ALS Transcriptomics</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="fc.html">FC Modules</a></li>
+    <li><a href="fc_analysis.html" class="active">FC Analysis</a></li>
+    <li><a href="mc.html">MC Modules</a></li>
+    <li><a href="mc_analysis.html">MC Analysis</a></li>
+    <li><a href="sc.html">SC Modules</a></li>
+    <li><a href="sc_analysis.html">SC Analysis</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eye">Frontal Cortex · Deep Analysis</div>
+  <h1 class="page-hero-title">GO Enrichment &amp; FTD/AD Associations</h1>
+  <p class="page-hero-sub">Gene Ontology enrichment for ALS-filtered modules (Biological Process + Cellular Component) and a separate heatmap of modules significantly associated with FTD/AD comorbidity.</p>
+</div>
+
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Gene Ontology Enrichment</div>
+    <h2 class="analysis-title">Biological Process &amp; Cellular Component</h2>
+    <p class="analysis-desc">GO enrichment was run on all genes in each ALS-filtered module (ALS p&lt;0.05, RIN p&gt;0.05) using clusterProfiler with BH multiple testing correction. Only terms with adjusted p&lt;0.05 are shown. Top 12 terms per module are displayed. Gene IDs were mapped from Ensembl to Entrez before enrichment.</p>
+    <div class="img-card reveal">
+      <p class="analysis-label">FC — ALS Filtered Modules · BP + CC</p>
+      <p class="analysis-desc" style="margin-bottom:16px;">All 10 FC modules passing the ALS/RIN dual filter. Brown4 and lightsteelblue show strong immunoglobulin-mediated immune response enrichment (consistent with B-cell/plasma cell signals). Skyblue1 shows ion transport and cell volume homeostasis biology. Blue2 shows antigen presentation via MHC class II — T-cell mediated cytotoxicity.</p>
+      <img src="reports/FC_go_enrichment.png" alt="FC GO Enrichment" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">FTD/AD Association Analysis</div>
+    <h2 class="analysis-title">Modules Linked to Neurodegeneration Comorbidity</h2>
+    <p class="analysis-desc">This heatmap shows all modules with a significant FTD/AD comorbidity association (p&lt;0.05). Unlike the ALS-filtered heatmap, ALS significance is not required here — the filter is purely FTD/AD p&lt;0.05. This reveals which frontal cortex gene programmes are specifically altered in the subset of ALS patients who also have Frontotemporal Dementia or Alzheimer's Disease comorbidity.</p>
+    <div class="img-card reveal">
+      <p class="analysis-label">FC — FTD/AD Significant Modules (FTD/AD p &lt; 0.05)</p>
+      <p class="analysis-desc" style="margin-bottom:16px;">Notable findings: the <strong style="color:var(--white)">darkslateblue</strong> module shows a highly significant Onset Axial association (***), suggesting this module's gene programme is specifically altered in patients with axial-onset ALS + FTD comorbidity. The <strong style="color:var(--white)">darkmagenta</strong> module shows Age at Death correlation (***), reflecting that FTD/AD-associated modules in frontal cortex are also age-dependent. Several modules show RIN correlation, indicating some FTD/AD signal may be confounded by RNA quality.</p>
+      <img src="reports/FC_ftdad_heatmap.png" alt="FC FTD/AD Heatmap" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">ALS Transcriptomics · Mertens Lab</div>
+  <p class="footer-note">Frontal Cortex GO + FTD/AD Analysis · clusterProfiler · Analysis by Yohan Kwon</p>
+  <div class="footer-links">
+    <a href="fc.html">← FC Modules</a>
+    <a href="index.html">Home</a>
+    <a href="mc_analysis.html">MC Analysis →</a>
+  </div>
+</footer>
+
+<script>
+function toggleTheme(){
+  var h=document.documentElement;
+  var next=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',next);
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+}
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  var btn=document.getElementById('theme-btn');
+  if(btn) btn.textContent=t==='dark'?'☀ Light':'☾ Dark';
+})();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
