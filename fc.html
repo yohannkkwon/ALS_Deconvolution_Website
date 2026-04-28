@@ -286,6 +286,32 @@
   </div>
 </section>
 
+<!-- SUBSET ANALYSIS GRAPHS -->
+<section style="background:var(--black); border-top:1px solid var(--border);">
+  <div class="container">
+    <p class="eyebrow blue reveal">Subset Analysis</p>
+    <h2 class="section-title reveal">Filtered Modules</h2>
+    <div class="divider blue reveal"></div>
+    <p class="section-body reveal">After re-running WGCNA with an expanded trait matrix (adding Age at Death, FTD/AD comorbidity, and onset site), modules were filtered to keep only those that are <strong style="color:var(--white);">significantly associated with ALS</strong> (p&nbsp;&lt;&nbsp;0.05) <em>and</em> <strong style="color:var(--white);">independent of RNA quality</strong> (RIN p&nbsp;&gt;&nbsp;0.05). The two plots below show the surviving modules and their trait correlations.</p>
+
+    <div class="reveal" style="margin-top:48px;">
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px 32px;">
+        <p style="font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue); margin-bottom:12px;">Filtered Module–Trait Heatmap</p>
+        <p style="font-size:0.8rem; color:var(--grey); margin-bottom:20px;">Pearson r correlations for modules passing the dual ALS/RIN filter. Blue = negative correlation, Red = positive. Stars indicate significance (* p&lt;0.05, ** p&lt;0.01, *** p&lt;0.001).</p>
+        <img src="reports/FC_img_1.png" alt="FC Filtered Module-Trait Heatmap" style="width:100%; border-radius:12px; display:block;" />
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:28px;">
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:20px; padding:28px 32px;">
+        <p style="font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue); margin-bottom:12px;">ALS Association Direction</p>
+        <p style="font-size:0.8rem; color:var(--grey); margin-bottom:20px;">Each bar shows −log₁₀(p<sub>ALS</sub>) × sign(r). Negative bars = module downregulated in ALS. Dashed lines mark the p = 0.05 threshold. All frontal cortex modules are downregulated.</p>
+        <img src="reports/FC_img_2.png" alt="FC ALS Association Direction Bar Chart" style="width:100%; border-radius:12px; display:block;" />
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-brand">ALS Transcriptomics · Mertens Lab</div>
   <p class="footer-note">Frontal Cortex Analysis · WGCNA + Cell-Type Deconvolution · Analysis by Yohan Kwon</p>
