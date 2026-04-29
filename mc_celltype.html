@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALS Transcriptomics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root { --accent: #bf5af2; }
+    [data-theme="light"] { --accent: #9b3fd4; }
+    .page-hero { padding: 140px 24px 80px; text-align: center; background: var(--dark); border-bottom: 1px solid var(--border); }
+    .page-hero-eye { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .page-hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .page-hero-sub { font-size: 1rem; color: var(--grey); max-width: 620px; margin: 16px auto 0; line-height: 1.8; }
+    .analysis-section { padding: 80px 24px; border-top: 1px solid var(--border); }
+    .analysis-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .analysis-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .analysis-desc { font-size: 0.88rem; color: var(--grey); line-height: 1.8; margin-bottom: 24px; max-width: 820px; }
+    .img-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 32px; margin-bottom: 32px; }
+    .stats-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+    .stat-chip { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px; }
+    .stat-chip-num { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .stat-chip-label { font-size: 0.72rem; color: var(--grey); margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><a href="index.html">← ALS Transcriptomics</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="fc.html">Frontal Cortex</a>
+      <ul class="dropdown-menu">
+        <li><a href="fc.html">Overview</a></li>
+        <li><a href="fc_analysis.html">Analysis</a></li>
+        <li><a href="fc_celltype.html">Cell Types</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="mc.html" class="active">Motor Cortex</a>
+      <ul class="dropdown-menu">
+        <li><a href="mc.html">Overview</a></li>
+        <li><a href="mc_analysis.html">Analysis</a></li>
+        <li><a href="mc_celltype.html" class="active">Cell Types</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="sc.html">Spinal Cord</a>
+      <ul class="dropdown-menu">
+        <li><a href="sc.html">Overview</a></li>
+        <li><a href="sc_analysis.html">Analysis</a></li>
+        <li><a href="sc_celltype.html">Cell Types</a></li>
+      </ul>
+    </li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eye">Motor Cortex · Cell-Type Deconvolution Validation</div>
+  <h1 class="page-hero-title">Marker Gene Expression<br>Across Deconvolved Cell Types</h1>
+  <p class="page-hero-sub">Violin plots showing known cell-type marker gene expression within each deconvolved cell fraction, validating that the deconvolution correctly separated major CNS cell populations. Samples with RIN &lt; 6 excluded. 302 samples · 6 cell types.</p>
+</div>
+
+<!-- OVERVIEW -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Validation Strategy</div>
+    <h2 class="analysis-title">Confirming Cell-Type Specificity in Motor Cortex</h2>
+    <p class="analysis-desc">The motor cortex presents a distinct cytoarchitecture compared to other cortical regions — most notably the presence of large Betz cells (upper motor neurons) in layer V. Validating deconvolution here is particularly important for ALS research, as upper motor neuron degeneration is a defining feature of the disease. Each deconvolved expression profile is assessed against curated marker gene sets. Selective enrichment of known markers within their expected cell-type fractions confirms successful deconvolution. Markers shared between fractions are expected to show biologically consistent cross-signal.</p>
+    <div class="stats-row stagger">
+      <div class="stat-chip"><div class="stat-chip-num">302</div><div class="stat-chip-label">Samples (RIN ≥ 6)</div></div>
+      <div class="stat-chip"><div class="stat-chip-num">6</div><div class="stat-chip-label">Cell Types Deconvolved</div></div>
+      <div class="stat-chip"><div class="stat-chip-num">49</div><div class="stat-chip-label">Marker Genes Found</div></div>
+      <div class="stat-chip"><div class="stat-chip-num">10</div><div class="stat-chip-label">Marker Categories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASTROCYTES -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Glial Markers · Astrocytes</div>
+    <h2 class="analysis-title">Astrocyte Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>GFAP</strong> and <strong>AQP4</strong> are among the most astrocyte-specific markers in the CNS. In the motor cortex, reactive astrogliosis is prominent in ALS — increased GFAP expression is a hallmark of disease progression. <strong>SLC1A2</strong> (EAAT2) is the dominant glutamate transporter in the cortex; impaired EAAT2 function leads to excitotoxic motor neuron death, directly relevant to ALS pathophysiology. <strong>SLC1A3</strong> (EAAT1) plays a complementary role in perisynaptic glutamate clearance. <strong>ALDH1L1</strong> marks all astrocyte subtypes regardless of activation state. Enrichment of these markers in the Astrocytes fraction confirms the deconvolution captured this critical supportive cell population.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Astrocytes_markers.png" alt="MC Astrocyte Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- MICROGLIA -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Immune Markers · Microglia</div>
+    <h2 class="analysis-title">Microglial Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>AIF1</strong> (IBA1) robustly labels all microglia and is the gold standard for microglial quantification in tissue sections. In ALS motor cortex, microglial activation around degenerating corticospinal tracts is well-documented. <strong>P2RY12</strong> and <strong>TMEM119</strong> are sensitive indicators of homeostatic microglial state — their downregulation in ALS samples may reflect disease-associated activation. <strong>CX3CR1</strong> mediates the neuron-derived chemokine fractalkine signal that regulates microglial surveillance and synaptic pruning. <strong>TYROBP</strong> and <strong>SPI1</strong> reflect the myeloid identity of microglia; SPI1/PU.1 is a master regulator of microglial gene expression programs.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Microglia_markers.png" alt="MC Microglia Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- OLIGODENDROCYTES -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Myelin Markers · Oligodendrocytes</div>
+    <h2 class="analysis-title">Oligodendrocyte Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>MBP</strong> and <strong>PLP1</strong> are the most abundant proteins in CNS myelin and serve as anchor markers for mature oligodendrocytes. The corticospinal tract, which originates from motor cortex layer V, is heavily myelinated — making oligodendrocyte integrity critical for upper motor neuron function. Demyelination along the corticospinal tract is observed in ALS. <strong>MOG</strong> is found at the outermost myelin sheath and is a target in autoimmune demyelinating disease. <strong>MAG</strong> is concentrated at periaxonal membranes critical for axon–glia interaction. <strong>MOBP</strong> and <strong>CLDN11</strong> mark compacted, mature myelin and are specific to oligodendrocytes.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Oligodendrocytes_markers.png" alt="MC Oligodendrocyte Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- OPCs -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Progenitor Markers · OPCs</div>
+    <h2 class="analysis-title">Oligodendrocyte Precursor Cell Enrichment</h2>
+    <p class="analysis-desc"><strong>PDGFRA</strong> marks OPCs throughout the brain and is the primary receptor for PDGF-AA mitogen signaling driving OPC proliferation. <strong>CSPG4</strong> (NG2) identifies OPCs in white and gray matter but also labels pericytes — cross-signal with vascular fractions is possible. <strong>VCAN</strong> is a large extracellular matrix proteoglycan that OPCs secrete into their local niche. <strong>SOX10</strong> is required across the oligodendrocyte lineage and regulates myelination gene expression. <strong>OLIG1</strong> is essential for OPC differentiation into myelinating oligodendrocytes, particularly during remyelination after injury. The presence of OPC markers in motor cortex is especially relevant as failed remyelination contributes to corticospinal tract degeneration.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/OPCs_markers.png" alt="MC OPC Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- EXCITATORY -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Neuronal Markers · Excitatory</div>
+    <h2 class="analysis-title">Excitatory Neuron Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>SLC17A7</strong> (VGluT1) marks cortical pyramidal neurons including layer V neurons that give rise to the corticospinal tract. In motor cortex, these neurons include the large Betz cells whose degeneration is characteristic of ALS. <strong>SLC17A6</strong> (VGluT2) is additionally expressed in subcortical glutamatergic populations projecting into motor cortex. <strong>CAMK2A</strong> (CaMKII-α) is highly expressed in excitatory neurons and is critical for synaptic plasticity and motor learning. <strong>TBR1</strong> specifies the identity of early-born, deep-layer cortical excitatory neurons. Given the ALS-relevant upper motor neuron population in this region, the quality of excitatory neuron deconvolution is especially significant.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Excitatory_markers.png" alt="MC Excitatory Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- INHIBITORY -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Neuronal Markers · Inhibitory</div>
+    <h2 class="analysis-title">Inhibitory Neuron Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>GAD1</strong> and <strong>GAD2</strong> encode GAD67 and GAD65 — the two enzymes that synthesize GABA from glutamate — and together define the GABAergic identity of all cortical interneurons. The balance between excitatory and inhibitory neurotransmission in motor cortex is critical; hyperexcitability due to disrupted inhibitory circuits is a proposed mechanism of upper motor neuron vulnerability in ALS. <strong>SLC6A1</strong> (GAT-1) performs GABA reuptake at both neuronal and glial terminals. <strong>SLC32A1</strong> (VGAT) packages GABA into vesicles and is expressed exclusively in inhibitory neurons. Clean separation of inhibitory from excitatory fractions validates the interneuron compartment.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Inhibitory_markers.png" alt="MC Inhibitory Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- NEURON -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Pan-Neuronal Markers</div>
+    <h2 class="analysis-title">General Neuronal Marker Distribution</h2>
+    <p class="analysis-desc">Pan-neuronal markers should be enriched across both excitatory and inhibitory fractions, validating the overall neuronal compartment. <strong>RBFOX3</strong> (NeuN) marks post-mitotic neurons in all brain regions. <strong>SNAP25</strong> and <strong>SYT1</strong> are pre-synaptic vesicle machinery components expressed in all neuron subtypes. <strong>TUBB3</strong> (β-III tubulin) is the canonical neuronal cytoskeletal marker distinguishing neurons from glia. <strong>STMN2</strong> (SCG10) is critically important in motor cortex context: STMN2 expression is controlled by TDP-43, whose nuclear clearance and cytoplasmic aggregation is the most common pathological hallmark in ALS. Reduced STMN2 reflects TDP-43 dysfunction and impaired axonal repair capacity in motor neurons.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Neuron_markers.png" alt="MC Neuron Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- GLIA -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Shared Glial Markers</div>
+    <h2 class="analysis-title">Pan-Glial Marker Distribution</h2>
+    <p class="analysis-desc"><strong>SOX9</strong> coordinates astrocyte and OPC specification and is expressed in both fractions — signal in both is expected. <strong>S100B</strong> is a calcium sensor expressed in astrocytes and some oligodendrocytes, and is released into CSF following brain injury, serving as a biomarker of astrocyte damage. In motor cortex, S100B elevation may reflect the reactive gliosis that accompanies motor neuron degeneration. <strong>PLP1</strong> is included here as an oligodendrocyte reference — its selective enrichment in the Oligodendrocytes fraction versus broad glial distribution confirms the deconvolution successfully distinguished astrocytes from oligodendrocytes. Absent neuronal signal in these glial markers indicates good cell compartment separation.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Glia_markers.png" alt="MC Glia Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- ENDOTHELIAL -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Vascular Markers · Endothelial</div>
+    <h2 class="analysis-title">Endothelial Cell Marker Distribution</h2>
+    <p class="analysis-desc"><strong>PECAM1</strong> (CD31), <strong>VWF</strong>, <strong>KDR</strong> (VEGFR2), <strong>FLT1</strong> (VEGFR1), and <strong>EMCN</strong> define vascular endothelium. Endothelial cells line the dense capillary network supplying the metabolically demanding motor cortex, but are not a separate fraction in this deconvolution. Any residual signal across deconvolved fractions reflects the inherent limitation of bulk-tissue deconvolution when the reference lacks specific cell types. Blood-brain barrier disruption, increasingly recognized in ALS, may modulate endothelial gene expression in ways that introduce non-specific signal in these bulk tissue samples.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Endothelial_markers.png" alt="MC Endothelial Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- PERICYTES -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Vascular Markers · Pericytes</div>
+    <h2 class="analysis-title">Pericyte Marker Distribution</h2>
+    <p class="analysis-desc"><strong>PDGFRB</strong> is the primary pericyte identity marker. <strong>RGS5</strong> is a GTPase-accelerating protein highly enriched in brain pericytes and used to distinguish them from smooth muscle cells. <strong>MCAM</strong> (CD146) marks pericytes in the neurovascular unit. <strong>ACTA2</strong> (α-SMA) is expressed in contractile pericytes that regulate cerebral blood flow. <strong>CSPG4</strong> (NG2) is expressed in both pericytes and OPCs — any NG2 signal in the OPCs fraction should be interpreted with this dual origin in mind. Like endothelial cells, pericytes are not deconvolved as a distinct fraction here, so non-specific distribution across fractions is expected and does not indicate deconvolution failure.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/MC/Pericytes_markers.png" alt="MC Pericyte Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">ALS Transcriptomics · Mertens Lab</div>
+  <p class="footer-note">Motor Cortex · Cell-Type Deconvolution Validation · 302 samples (RIN ≥ 6)</p>
+  <div class="footer-links">
+    <a href="fc_celltype.html">← FC Cell Types</a>
+    <a href="index.html">Home</a>
+    <a href="sc_celltype.html">SC Cell Types →</a>
+  </div>
+</footer>
+
+<script>
+function toggleTheme(){var h=document.documentElement;var next=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',next);localStorage.setItem('theme',next);document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';}
+(function(){var t=localStorage.getItem('theme')||'dark';var btn=document.getElementById('theme-btn');if(btn)btn.textContent=t==='dark'?'☀ Light':'☾ Dark';})();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

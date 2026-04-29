@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALS Transcriptomics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root { --accent: #30d158; }
+    [data-theme="light"] { --accent: #1a9e3f; }
+    .page-hero { padding: 140px 24px 80px; text-align: center; background: var(--dark); border-bottom: 1px solid var(--border); }
+    .page-hero-eye { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .page-hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; }
+    .page-hero-sub { font-size: 1rem; color: var(--grey); max-width: 620px; margin: 16px auto 0; line-height: 1.8; }
+    .analysis-section { padding: 80px 24px; border-top: 1px solid var(--border); }
+    .analysis-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .analysis-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; }
+    .analysis-desc { font-size: 0.88rem; color: var(--grey); line-height: 1.8; margin-bottom: 24px; max-width: 820px; }
+    .img-card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 32px; margin-bottom: 32px; }
+    .stats-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 48px; }
+    .stat-chip { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 20px; }
+    .stat-chip-num { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .stat-chip-label { font-size: 0.72rem; color: var(--grey); margin-top: 2px; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand"><a href="index.html">← ALS Transcriptomics</a></div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li class="nav-dropdown">
+      <a href="fc.html">Frontal Cortex</a>
+      <ul class="dropdown-menu">
+        <li><a href="fc.html">Overview</a></li>
+        <li><a href="fc_analysis.html">Analysis</a></li>
+        <li><a href="fc_celltype.html">Cell Types</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="mc.html">Motor Cortex</a>
+      <ul class="dropdown-menu">
+        <li><a href="mc.html">Overview</a></li>
+        <li><a href="mc_analysis.html">Analysis</a></li>
+        <li><a href="mc_celltype.html">Cell Types</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="sc.html" class="active">Spinal Cord</a>
+      <ul class="dropdown-menu">
+        <li><a href="sc.html">Overview</a></li>
+        <li><a href="sc_analysis.html">Analysis</a></li>
+        <li><a href="sc_celltype.html" class="active">Cell Types</a></li>
+      </ul>
+    </li>
+    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-eye">Spinal Cord · Cell-Type Deconvolution Validation</div>
+  <h1 class="page-hero-title">Marker Gene Expression<br>Across Deconvolved Cell Types</h1>
+  <p class="page-hero-sub">Violin plots showing known cell-type marker gene expression within each deconvolved cell fraction, validating that the deconvolution correctly separated major CNS cell populations. Samples with RIN &lt; 6 excluded. 369 samples · 7 cell types including motor neurons.</p>
+</div>
+
+<!-- OVERVIEW -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Validation Strategy</div>
+    <h2 class="analysis-title">Confirming Cell-Type Specificity in Spinal Cord</h2>
+    <p class="analysis-desc">The spinal cord is the primary site of lower motor neuron (LMN) degeneration in ALS — the α-motor neurons of the anterior horn that directly innervate skeletal muscle. Unlike cortical regions, the spinal cord deconvolution reference includes a dedicated <strong>Motor Neurons</strong> fraction, making this the only region where lower motor neuron-specific markers can be directly evaluated. The spinal cord also contains a distinct cellular architecture: oligodendrocyte-rich white matter columns, a large astrocyte population, and, uniquely, ependymal cells lining the central canal. 12 marker categories are assessed here, including the motor neuron and ependymal categories not present in cortical regions.</p>
+    <div class="stats-row stagger">
+      <div class="stat-chip"><div class="stat-chip-num">369</div><div class="stat-chip-label">Samples (RIN ≥ 6)</div></div>
+      <div class="stat-chip"><div class="stat-chip-num">7</div><div class="stat-chip-label">Cell Types Deconvolved</div></div>
+      <div class="stat-chip"><div class="stat-chip-num">54</div><div class="stat-chip-label">Marker Genes Found</div></div>
+      <div class="stat-chip"><div class="stat-chip-num">12</div><div class="stat-chip-label">Marker Categories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ASTROCYTES -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Glial Markers · Astrocytes</div>
+    <h2 class="analysis-title">Astrocyte Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>GFAP</strong> astrogliosis is prominent in ALS spinal cord, particularly in the anterior horn adjacent to degenerating motor neurons. Reactive astrocytes in ALS lose their neuroprotective functions and may adopt a neurotoxic A1 phenotype. <strong>AQP4</strong> maintains ionic homeostasis and water balance critical for motor neuron survival in the metabolically demanding anterior horn. <strong>SLC1A2</strong> (EAAT2) is the most ALS-relevant marker here — approximately 60–70% of sporadic ALS cases show reduced EAAT2 protein or mRNA in spinal cord astrocytes, implicating glutamate excitotoxicity as a central mechanism of lower motor neuron death. <strong>ALDH1L1</strong> serves as a pan-astrocyte marker independent of activation state.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Astrocytes_markers.png" alt="SC Astrocyte Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- MOTOR NEURONS -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Spinal Cord · Lower Motor Neurons</div>
+    <h2 class="analysis-title">Motor Neuron Marker Enrichment</h2>
+    <p class="analysis-desc">This is the most disease-critical validation category. <strong>MNX1</strong> (HB9) is a transcription factor that specifies motor neuron identity during development and remains expressed in adult lower motor neurons — it is essentially exclusive to α-motor neurons. <strong>CHAT</strong> (choline acetyltransferase) synthesizes acetylcholine, the neurotransmitter at the neuromuscular junction; its loss in spinal cord is a direct marker of lower motor neuron degeneration. <strong>SLC18A3</strong> (VAChT) is the vesicular acetylcholine transporter, required for packaging ACh into vesicles. <strong>ISL1</strong> (Islet-1) is a LIM-homeodomain transcription factor that maintains cholinergic motor neuron identity. <strong>PRPH</strong> (peripherin), <strong>NEFH</strong>, and <strong>NEFM</strong> are neurofilament proteins that form the structural backbone of the large-caliber axons characteristic of α-motor neurons. Enrichment specifically in the Motor Neurons fraction validates that the deconvolution correctly isolated the most disease-relevant cell population in ALS.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/MotorNeurons_markers.png" alt="SC Motor Neuron Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- MICROGLIA -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Immune Markers · Microglia</div>
+    <h2 class="analysis-title">Microglial Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>AIF1</strong> (IBA1) marks all microglia and is the primary histological tool for quantifying microglial density in ALS spinal cord. Microglial activation in the anterior horn precedes and accompanies motor neuron loss and is visible by MRI in ALS patients. <strong>P2RY12</strong> and <strong>TMEM119</strong> indicate homeostatic microglia; their loss indicates transition to a disease-associated microglial state. <strong>CX3CR1</strong> mediates fractalkine signaling from neurons to microglia, regulating surveillance and inflammatory responses critical in the ALS anterior horn environment. <strong>TYROBP</strong> and <strong>SPI1</strong> (PU.1) mark the myeloid identity of microglia and are components of TREM2 signaling pathways increasingly implicated in neurodegeneration.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Microglia_markers.png" alt="SC Microglia Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- OLIGODENDROCYTES -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Myelin Markers · Oligodendrocytes</div>
+    <h2 class="analysis-title">Oligodendrocyte Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>MBP</strong> and <strong>PLP1</strong> dominate myelin composition in the spinal cord white matter columns (anterior, lateral, and posterior funiculi). The lateral corticospinal tract carries descending upper motor neuron axons and is surrounded by myelinating oligodendrocytes whose integrity is essential for signal conduction. Demyelination of the corticospinal tract is observed in ALS post-mortem tissue. <strong>MOG</strong> at the outermost lamella and <strong>MAG</strong> at the periaxonal membrane represent the structural integrity of myelin sheaths around motor axons. <strong>MOBP</strong> and <strong>CLDN11</strong> are compaction markers that ensure electrical insulation. Their selective enrichment in the Oligodendrocytes fraction indicates successful deconvolution of the spinal cord myelin compartment.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Oligodendrocytes_markers.png" alt="SC Oligodendrocyte Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- OPCs -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Progenitor Markers · OPCs</div>
+    <h2 class="analysis-title">Oligodendrocyte Precursor Cell Enrichment</h2>
+    <p class="analysis-desc"><strong>PDGFRA</strong> marks OPCs that constitute about 5% of all spinal cord cells. Their capacity for remyelination is critical after axonal injury and in chronic demyelinating conditions. <strong>CSPG4</strong> (NG2) identifies OPCs and pericytes — both reside in the spinal cord and some cross-signal with pericyte fractions is expected. <strong>VCAN</strong> is deposited in the OPC extracellular niche and participates in glial scar formation after spinal cord injury. <strong>SOX10</strong> is required for the entire oligodendrocyte lineage and maintains the transcriptional identity of both OPCs and mature oligodendrocytes. <strong>OLIG1</strong> drives OPC differentiation and is essential for remyelination responses. Spinal cord OPCs are particularly important in the context of ALS corticospinal tract pathology.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/OPCs_markers.png" alt="SC OPC Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- EXCITATORY -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Neuronal Markers · Excitatory</div>
+    <h2 class="analysis-title">Excitatory Neuron Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>SLC17A6</strong> (VGluT2) is the dominant vesicular glutamate transporter in spinal cord excitatory interneurons, marking glutamatergic neurons in laminae I–VII that modulate sensorimotor integration. Unlike cortex where VGluT1 predominates, VGluT2 is the primary isoform in spinal excitatory circuits. <strong>SLC17A7</strong> (VGluT1) marks proprioceptive primary afferents and some dorsal horn interneurons. <strong>CAMK2A</strong> is expressed in spinal excitatory interneurons mediating pain and reflex circuits. <strong>TBR1</strong> has a more restricted expression pattern in spinal cord than in cortex but marks a subset of excitatory interneurons. Excitatory interneurons are relevant to ALS because dysregulated spinal excitatory input contributes to motor neuron hyperexcitability.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Excitatory_markers.png" alt="SC Excitatory Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- INHIBITORY -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Neuronal Markers · Inhibitory</div>
+    <h2 class="analysis-title">Inhibitory Neuron Marker Enrichment</h2>
+    <p class="analysis-desc"><strong>GAD1</strong> and <strong>GAD2</strong> mark GABAergic and glycinergic interneurons in the spinal cord dorsal and ventral horns. In the ventral horn, Renshaw cells are inhibitory interneurons that provide recurrent inhibition to motor neurons — their dysfunction may contribute to motor neuron hyperexcitability in ALS. <strong>SLC6A1</strong> (GAT-1) performs GABA reuptake in both dorsal and ventral horn inhibitory circuits. <strong>SLC32A1</strong> (VGAT) is the vesicular transporter for both GABA and glycine, marking all inhibitory neurons including glycinergic Renshaw cells and Ia inhibitory interneurons that regulate reciprocal inhibition between antagonist muscles. Loss of spinal inhibitory interneuron function is directly linked to the clinical spasticity observed in ALS.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Inhibitory_markers.png" alt="SC Inhibitory Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- NEURON -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Pan-Neuronal Markers</div>
+    <h2 class="analysis-title">General Neuronal Marker Distribution</h2>
+    <p class="analysis-desc">Pan-neuronal markers should be enriched across both excitatory, inhibitory, and motor neuron fractions. <strong>RBFOX3</strong> (NeuN) marks all post-mitotic neurons. <strong>SNAP25</strong> and <strong>SYT1</strong> are components of the SNARE complex for synaptic vesicle fusion. <strong>TUBB3</strong> labels neuronal cytoskeleton throughout all neuron subtypes. <strong>STMN2</strong> is the most diagnostically relevant gene in this panel for spinal cord: it is the primary target of aberrant TDP-43 splicing in ALS. TDP-43 pathology causes retention of a cryptic exon, creating a truncated, non-functional STMN2 protein. Loss of full-length STMN2 impairs axonal regeneration after injury — a mechanism directly contributing to progressive denervation of motor neurons in ALS spinal cord. Staining intensity of STMN2 in the Motor Neurons fraction specifically may correlate with TDP-43 integrity.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Neuron_markers.png" alt="SC Neuron Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- GLIA -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Shared Glial Markers</div>
+    <h2 class="analysis-title">Pan-Glial Marker Distribution</h2>
+    <p class="analysis-desc"><strong>SOX9</strong> is expressed in astrocytes and OPCs throughout the spinal cord and is upregulated in reactive gliosis following motor neuron death. <strong>S100B</strong> is expressed in astrocytes and some oligodendrocytes, with particularly high levels in Schwann cells of spinal roots — a potential source of signal in lumbar spinal cord samples. <strong>PLP1</strong> serves as a reference marker for the oligodendrocyte compartment; its selective enrichment in the Oligodendrocytes fraction versus broader glial distribution validates the inter-glial separation in this region. The spinal cord has a higher white-matter-to-gray-matter ratio than cortex, making accurate oligodendrocyte versus astrocyte separation especially important for downstream WGCNA module interpretation.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Glia_markers.png" alt="SC Glia Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- ENDOTHELIAL -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Vascular Markers · Endothelial</div>
+    <h2 class="analysis-title">Endothelial Cell Marker Distribution</h2>
+    <p class="analysis-desc"><strong>PECAM1</strong>, <strong>VWF</strong>, <strong>KDR</strong>, <strong>FLT1</strong>, and <strong>EMCN</strong> define vascular endothelium. Spinal cord blood vessels are surrounded by a blood-spinal-cord barrier analogous to the blood-brain barrier. ALS is associated with blood-brain/spinal cord barrier dysfunction, potentially elevating endothelial gene expression in affected samples. Since endothelial cells are not a deconvolved fraction here, their signal should be diffusely distributed. However, barrier disruption may introduce a differential signal between ALS and control samples that could influence other fraction assignments. This is an interpretive caveat worth noting when analyzing ALS-specific modules that include vascular marker genes.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Endothelial_markers.png" alt="SC Endothelial Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- PERICYTES -->
+<section class="analysis-section" style="background:var(--dark);">
+  <div class="container">
+    <div class="analysis-label">Vascular Markers · Pericytes</div>
+    <h2 class="analysis-title">Pericyte Marker Distribution</h2>
+    <p class="analysis-desc"><strong>PDGFRB</strong>, <strong>RGS5</strong>, <strong>MCAM</strong>, <strong>ACTA2</strong>, and <strong>CSPG4</strong> define the pericyte identity. Spinal cord pericytes regulate microvascular tone and blood-spinal-cord barrier integrity. <strong>CSPG4</strong> (NG2) is of particular interest in spinal cord where NG2-expressing cells include both OPCs and pericytes — the dual expression pattern means this marker alone cannot distinguish the two populations. ALS-associated pericyte dysfunction has been proposed to contribute to early blood-spinal-cord barrier breakdown preceding motor neuron loss, suggesting these markers may show altered distributions between ALS and control samples even in non-pericyte deconvolved fractions.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Pericytes_markers.png" alt="SC Pericyte Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<!-- EPENDYMAL -->
+<section class="analysis-section" style="background:var(--black);">
+  <div class="container">
+    <div class="analysis-label">Spinal Cord-Specific · Ependymal Cells</div>
+    <h2 class="analysis-title">Ependymal Cell Marker Distribution</h2>
+    <p class="analysis-desc">Ependymal cells line the central canal of the spinal cord and form a barrier between the CSF and spinal parenchyma. This marker category is unique to the spinal cord analysis and not assessed in cortical regions. <strong>FOXJ1</strong> is the master transcription factor for ciliogenesis and marks multiciliated ependymal cells that drive CSF flow. <strong>PIFO</strong> (Pirouette) and <strong>TPPP3</strong> are cilia-associated proteins expressed in ependymal cells, with TPPP3 specifically marking the inner dynein arm of motile cilia. Ependymal cells are not a deconvolved fraction, so non-specific distribution is expected. Nonetheless, their markers serve as a useful quality check: concentrated signal in any specific deconvolved fraction would suggest contamination of the reference with ependymal-like cells.</p>
+    <div class="img-card reveal">
+      <img src="reports/cell_type_validation/SC/Ependymal_markers.png" alt="SC Ependymal Markers" class="analysis-img" />
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">ALS Transcriptomics · Mertens Lab</div>
+  <p class="footer-note">Spinal Cord · Cell-Type Deconvolution Validation · 369 samples (RIN ≥ 6)</p>
+  <div class="footer-links">
+    <a href="mc_celltype.html">← MC Cell Types</a>
+    <a href="index.html">Home</a>
+    <a href="sc_analysis.html">SC Analysis →</a>
+  </div>
+</footer>
+
+<script>
+function toggleTheme(){var h=document.documentElement;var next=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',next);localStorage.setItem('theme',next);document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';}
+(function(){var t=localStorage.getItem('theme')||'dark';var btn=document.getElementById('theme-btn');if(btn)btn.textContent=t==='dark'?'☀ Light':'☾ Dark';})();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
