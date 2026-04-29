@@ -414,10 +414,35 @@
     }
     [data-theme="light"] body { background: var(--black); color: var(--white); }
     [data-theme="light"] nav { background: rgba(255,255,255,0.88); }
-    [data-theme="light"] .hero-title { background: linear-gradient(135deg, #1d1d1f 0%, #444 100%); -webkit-background-clip: text; background-clip: text; }
-    [data-theme="light"] code { background: rgba(0,0,0,0.06); }
-    [data-theme="light"] .btn-secondary { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.12); }
+    /* Hero title: drop the white gradient, use solid dark text instead */
+    [data-theme="light"] .hero-title {
+      background: none;
+      -webkit-text-fill-color: #1d1d1f;
+      color: #1d1d1f;
+    }
+    [data-theme="light"] .hero-title span {
+      background: none;
+      -webkit-text-fill-color: var(--blue);
+      color: var(--blue);
+    }
+    /* Hero grid lines are white — make them dark in light mode */
+    [data-theme="light"] .hero-grid {
+      background-image:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+    }
+    /* Buttons */
     [data-theme="light"] .btn-primary:hover { filter: brightness(1.1); }
+    [data-theme="light"] .btn-secondary { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.12); color: #1d1d1f; }
+    /* Tag chips */
+    [data-theme="light"] .tag { background: rgba(0,0,0,0.06); }
+    /* Code */
+    [data-theme="light"] code { background: rgba(0,0,0,0.06); }
+    /* Cards hover border */
+    [data-theme="light"] .report-card:hover { border-color: rgba(0,0,0,0.15); box-shadow: 0 24px 60px rgba(0,0,0,0.1); }
+    [data-theme="light"] .deconv-card:hover { border-color: rgba(0,0,0,0.15); }
+    /* Bar tracks */
+    [data-theme="light"] .bar-track { background: rgba(0,0,0,0.08); }
 
     /* ── Theme toggle ─────────────────────────────────────────────── */
     .theme-toggle {
