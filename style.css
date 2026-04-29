@@ -148,5 +148,36 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:56
 @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
 @keyframes pulse  { from{opacity:.6;transform:scale(1)} to{opacity:1;transform:scale(1.08)} }
 
+/* ── Dropdown Nav ─────────────────────────────────────────────────────────── */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a::after { content: ' ▾'; font-size: 0.62em; opacity: 0.65; vertical-align: middle; }
+.dropdown-menu {
+  position: absolute; top: calc(100% + 10px); left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: rgba(10,10,10,0.96);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 6px 0; min-width: 170px; list-style: none;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+  z-index: 200;
+}
+[data-theme="light"] .dropdown-menu { background: rgba(255,255,255,0.97); }
+.dropdown-menu li a {
+  display: block; padding: 9px 18px; font-size: 0.78rem; color: var(--white);
+  text-decoration: none; opacity: 0.75; white-space: nowrap;
+  transition: opacity 0.15s, background 0.15s;
+  border-radius: 6px; margin: 0 4px;
+}
+.dropdown-menu li a:hover { opacity: 1; background: rgba(128,128,128,0.14); }
+.dropdown-menu li a.active { opacity: 1; color: var(--blue); }
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1; visibility: visible;
+  transform: translateX(-50%) translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0s;
+}
+
 /* ── Theme toggle script (shared across pages) ───────────────────────────── */
 /* Applied via inline <script> in each page's <head> to prevent flash */

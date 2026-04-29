@@ -26,12 +26,27 @@
   <div class="nav-brand"><a href="index.html">← ALS Transcriptomics</a></div>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="fc.html">FC Modules</a></li>
-    <li><a href="fc_analysis.html">FC Analysis</a></li>
-    <li><a href="mc.html">MC Modules</a></li>
-    <li><a href="mc_analysis.html">MC Analysis</a></li>
-    <li><a href="sc.html">SC Modules</a></li>
-    <li><a href="sc_analysis.html" class="active">SC Analysis</a></li>
+    <li class="nav-dropdown">
+      <a href="fc.html">Frontal Cortex</a>
+      <ul class="dropdown-menu">
+        <li><a href="fc.html">Overview</a></li>
+        <li><a href="fc_analysis.html">Analysis</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="mc.html">Motor Cortex</a>
+      <ul class="dropdown-menu">
+        <li><a href="mc.html">Overview</a></li>
+        <li><a href="mc_analysis.html">Analysis</a></li>
+      </ul>
+    </li>
+    <li class="nav-dropdown">
+      <a href="sc.html" class="active">Spinal Cord</a>
+      <ul class="dropdown-menu">
+        <li><a href="sc.html">Overview</a></li>
+        <li><a href="sc_analysis.html" class="active">Analysis</a></li>
+      </ul>
+    </li>
     <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
   </ul>
 </nav>
