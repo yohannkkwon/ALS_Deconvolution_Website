@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <script>
-    (function(){
-      var t = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', t);
-    })();
+    /* Home page is always dark — ignore stored theme preference */
+    document.documentElement.setAttribute('data-theme', 'dark');
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALS Transcriptomics — Yohan Kwon</title>
+  <title>ALS Transcriptomics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -425,7 +423,6 @@
     <li><a href="fc_analysis.html">FC Analysis</a></li>
     <li><a href="mc_analysis.html">MC Analysis</a></li>
     <li><a href="sc_analysis.html">SC Analysis</a></li>
-    <li><button class="theme-toggle" onclick="toggleTheme()" id="theme-btn">☀ Light</button></li>
   </ul>
 </nav>
 
@@ -844,21 +841,6 @@ document.addEventListener('mousemove', e => {
   const y = (e.clientY / window.innerHeight - 0.5) * 20;
   heroBg.style.transform = `translate(${x}px, ${y}px) scale(1.08)`;
 }, { passive: true });
-</script>
-<script>
-function toggleTheme(){
-  var h = document.documentElement;
-  var next = h.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
-  h.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  document.getElementById('theme-btn').textContent = next==='dark' ? '☀ Light' : '☾ Dark';
-}
-// Set button label on load
-(function(){
-  var t = localStorage.getItem('theme')||'dark';
-  var btn = document.getElementById('theme-btn');
-  if(btn) btn.textContent = t==='dark' ? '☀ Light' : '☾ Dark';
-})();
 </script>
 </body>
 </html>
